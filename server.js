@@ -23,12 +23,14 @@ function toggleSidebar() {
   sidebar.classList.toggle('open');
 }
 
-// Salvar publicação no LocalStorage
+// Salvar publicação no LocalStorage com suporte a mídia
 function savePublication(event) {
   event.preventDefault();
+
   const title = document.getElementById('titulo').value;
   const content = document.getElementById('conteudo').value;
   const category = document.getElementById('categoria').value;
+  const mediaURL = document.getElementById('media-url').value;
 
   const publications = JSON.parse(localStorage.getItem('publications')) || [];
   const newPublication = {
@@ -36,18 +38,18 @@ function savePublication(event) {
     title,
     content,
     category,
+    mediaURL,
     date: new Date().toISOString(),
   };
 
   publications.push(newPublication);
   localStorage.setItem('publications', JSON.stringify(publications));
+
   loadPublications();
-  updatePublicationCount();
   document.getElementById('publication-form').reset();
-  showSection('publications');
 }
 
-// Carregar e exibir publicações
+// Carregar e exibir publicações no painel principal
 function loadPublications() {
   const publications = JSON.parse(localStorage.getItem('publications')) || [];
   const publicationsContainer = document.querySelector('.cards-container');
@@ -62,12 +64,61 @@ function loadPublications() {
       <strong>${pub.title}</strong>
       <p>${pub.content}</p>
       <small>Categoria: ${pub.category}</small>
-      <button onclick="editPublication(${pub.id})">Editar</button>
+      ${pub.mediaURL ? renderMedia(pub.mediaURL) : ''}
       <button onclick="deletePublication(${pub.id})">Deletar</button>
     `;
     publicationsContainer.appendChild(pubElement);
   });
 }
+
+// Renderizar mídia (imagem ou vídeo)
+function renderMedia(mediaURL) {
+  if (mediaURL.match(/\.(jpeg|jpg|gif|png)$/i)) {
+    return `<img src="${mediaURL}" alt="Mídia da Publicação" class="media-preview">`;
+  } else if (mediaURL.match(/\.(mp4|webm|ogg)$/i)) {
+    return `<video controls class="media-preview">
+              <source src="${mediaURL}" type="video/mp4">
+              Seu navegador não suporta vídeos.
+            </video>`;
+  }
+  return '';
+}
+
+// Excluir publicação
+function deletePublication(id) {
+  const publications = JSON.parse(localStorage.getItem('publications')) || [];
+  const updatedPublications = publications.filter(pub => pub.id !== id);
+  localStorage.setItem('publications', JSON.stringify(updatedPublications));
+  loadPublications();
+}
+
+// Carregar publicações na página projetos.html
+function loadProjectsPage() {
+  const publications = JSON.parse(localStorage.getItem('publications')) || [];
+  const projectsContainer = document.querySelector('.projects-container');
+  projectsContainer.innerHTML = '';
+
+  publications.forEach(pub => {
+    const projectElement = document.createElement('div');
+    projectElement.classList.add('project-card');
+    projectElement.innerHTML = `
+      <h3>${pub.title}</h3>
+      <p>${pub.content}</p>
+      <small>Categoria: ${pub.category}</small>
+      ${pub.mediaURL ? renderMedia(pub.mediaURL) : ''}
+    `;
+    projectsContainer.appendChild(projectElement);
+  });
+}
+
+// Inicializar o painel ao carregar a página
+document.addEventListener('DOMContentLoaded', function () {
+  if (document.body.id === 'dashboard') {
+    loadPublications();
+  } else if (document.body.id === 'projects') {
+    loadProjectsPage();
+  }
+});
 
 // Editar uma publicação
 function editPublication(id) {
