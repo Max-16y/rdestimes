@@ -1,308 +1,95 @@
-/* Geral */
+/* Estilos Gerais */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: Arial, sans-serif;
   margin: 0;
-  background-color: #F5F5F5;
-  color: #333;
+  padding: 0;
+  background-color: #f4f4f4;
 }
 
-.container {
-  display: flex;
-  height: 100vh;
-  overflow: hidden;
-}
-
-/* Menu Lateral */
-.sidebar {
-  width: 250px;
-  height: 100%;
-  background-color: darkred;
-  position: fixed;
-  left: -250px;
-  transition: 0.3s;
-}
-
-.sidebar.open {
-  left: 0;
-}
-
-.sidebar h2 {
+header {
+  background-color: #333;
   color: white;
-  padding: 20px;
+  padding: 10px 20px;
   text-align: center;
 }
 
-.sidebar ul {
-  list-style: none;
-  padding: 0;
-}
-
-.sidebar ul li {
-  padding: 10px 20px;
-}
-
-.sidebar ul li a {
-  color: white;
-  text-decoration: none;
-  display: block;
-  padding: 10px 0;
-}
-
-.sidebar ul li a.active {
-  background-color: darkgoldenrod;
-}
-
-/* Botão do Menu */
-.toggle-btn {
-  font-size: 30px;
-  background: none;
-  border: none;
-  color: darkred;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 1000;
-}
-
-/* Estilos para o conteúdo principal */
-.main-content {
-  margin-left: 250px; /* Ajuste para não sobrepor o menu */
-  padding: 20px;
-}
-
-/* Conteúdo Principal */
-.main-content {
-  flex: 1;
-  padding: 20px;
-  overflow-y: auto;
-  margin-left: 250px;
-  transition: margin-left 0.3s ease;
-}
-
-.header h1 {
-  font-size: 28px;
+h1 {
   margin: 0;
 }
 
-.section-content {
-  display: none;
+/* Menu Lateral */
+#sidebar {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #333;
+  overflow-x: hidden;
+  transition: 0.3s;
+  padding-top: 60px;
 }
 
-.section-content.active {
+#sidebar ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+#sidebar ul li {
+  padding: 8px;
+  text-align: center;
+}
+
+#sidebar ul li a {
+  color: white;
+  text-decoration: none;
   display: block;
-}
-
-.stat-box {
-  background-color: #ECF0F1;
   padding: 10px;
-  margin: 10px 0;
-  border-radius: 5px;
 }
 
-.cards-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 20px;
+#sidebar ul li a:hover {
+  background-color: #575757;
 }
 
-.card {
-  background: #FFFFFF;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  padding: 15px;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.card:hover {
-  transform: scale(1.03);
-  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
-}
-
-/* Formulário */
-.form-container {
-  background: #fff;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
-}
-
-.form-container input,
-.form-container textarea {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.btn-submit {
-  background-color: darkgoldenrod;
-  color: #fff;
-  padding: 10px 20px;
+.open-btn {
+  font-size: 30px;
+  background: none;
   border: none;
-  border-radius: 5px;
+  color: white;
   cursor: pointer;
-  font-size: 16px;
-  transition: background 0.3s ease;
 }
 
-.btn-submit:hover {
-  background-color: goldenrod;
-}
-
-/* Ajustando o contêiner do formulário */
-.form-container {
-  max-width: 900px; /* Largura máxima para telas grandes */
-  margin: 0 auto;   /* Centraliza o contêiner */
-  padding: 20px;
-  background-color: #f9f9f9; /* Fundo leve para destacar o formulário */
-  border-radius: 8px; /* Cantos arredondados */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
-}
-
-/* Estilo para o formulário */
-#publication-form label {
-  font-weight: bold;
-  margin-top: 10px;
-  display: block; /* Força os rótulos a ficarem acima dos campos */
-}
-
-#publication-form input, 
-#publication-form textarea, 
-#publication-form button {
-  width: 100%; /* Ocupa toda a largura disponível */
-  padding: 10px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-#publication-form textarea {
-  resize: vertical; /* Permite redimensionamento vertical */
-}
-
-#publication-form button {
-  background-color: darkgoldenrod; /* Cor do botão */
-  color: #fff;
-  font-weight: bold;
-  cursor: pointer;
+.close-btn {
+  font-size: 36px;
+  color: white;
   border: none;
+  background: none;
+  position: absolute;
+  top: 20px;
+  left: 20px;
 }
 
-#publication-form button:hover {
-  background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
-}
-
-/* Contêiner geral das configurações */
-.settings-container {
-  max-width: 700px; /* Limite de largura */
-  margin: 0 auto;   /* Centraliza a área na página */
+/* Conteúdo Principal */
+#content {
+  margin-left: 0;
   padding: 20px;
-  background-color: #f9f9f9; /* Fundo claro para destacar */
+}
+
+.intro {
+  background-color: white;
+  padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para destacar o bloco */
-}
-
-/* Estilo para cada fieldset */
-.settings-container fieldset {
-  border: 1px solid #ddd;
-  padding: 15px;
-  margin-bottom: 20px;
-  border-radius: 5px;
-}
-
-/* Legenda */
-.settings-container legend {
-  font-size: 18px;
-  font-weight: bold;
-  color: #333;
-}
-
-/* Estilo dos rótulos */
-.settings-container label {
-  font-weight: bold;
-  margin-top: 10px;
-  display: block; /* Para alinhar acima dos campos */
-}
-
-/* Campos de entrada e áreas de texto */
-.settings-container input, 
-.settings-container textarea, 
-.settings-container select {
-  width: 100%; /* Ocupa toda a largura disponível */
-  padding: 10px;
-  margin-top: 5px;
-  margin-bottom: 15px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-/* Botão de salvar */
-.settings-container .btn-submit {
-  background-color: #007BFF; /* Azul padrão */
-  color: #fff;
-  font-weight: bold;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.settings-container .btn-submit:hover {
-  background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Responsividade */
-@media (max-width: 768px) {
-  .sidebar {
-    transform: translateX(-100%);
-    position: fixed;
-    z-index: 1000;
+@media screen and (max-width: 768px) {
+  #sidebar {
+    width: 100%;
+    height: 100%;
   }
-
-  .sidebar.open {
-    transform: translateX(0);
-  }
-
-  .main-content {
-    margin-left: 0;
-  }
-
-  .toggle-btn {
-    display: block;
-    position: absolute;
-    top: 15px;
-    left: 15px;
-    background-color: darkgoldenrod;
-    color: #fff;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 1100;
-  }
-    .form-container {
-    padding: 10px;
-  }
-
-  #publication-form input, 
-  #publication-form textarea, 
-  #publication-form button {
-    font-size: 14px;
-    }
-    
-      .settings-container {
-    padding: 10px;
-  }
-
-  .settings-container label,
-  .settings-container input,
-  .settings-container textarea,
-  .settings-container select {
-    font-size: 14px;
+  
+  .open-btn {
+    font-size: 25px;
   }
 }
