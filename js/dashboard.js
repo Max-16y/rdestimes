@@ -10,6 +10,8 @@ function showSection(sectionId) {
   const activeSection = document.getElementById(sectionId);
   if (activeSection) {
     activeSection.style.display = 'block';
+  } else {
+    console.warn(`Seção com ID "${sectionId}" não encontrada.`);
   }
 
   // Atualiza a navegação
@@ -152,7 +154,7 @@ document.addEventListener('DOMContentLoaded', function() {
   // Atualizar as estatísticas do Dashboard
   const publications = JSON.parse(localStorage.getItem('publications')) || [];
   const totalPublications = publications.length;
-  const activeUsers = countActiveUsers; // Número de usuários ativos
+  const activeUsers = countActiveUsers(); // Corrigido: Chamar a função countActiveUsers()
 
   // Atualizar as estatísticas no Dashboard
   const statsContainer = document.querySelector('.stat-box');
@@ -169,7 +171,7 @@ function saveUser(username, email) {
     id: new Date().getTime(),
     username,
     email,
-    active: true // Você pode usar essa flag para indicar usuários ativos/inativos
+    active: true // Pode ser alterado conforme a necessidade
   };
 
   users.push(newUser);
