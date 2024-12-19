@@ -89,6 +89,10 @@ h1 {
     height: 100%;
   }
   
+  #content {
+    margin-left: 0;
+  }
+
   .open-btn {
     font-size: 25px;
   }
