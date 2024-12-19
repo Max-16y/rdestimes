@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Dashboard</title>
+    <!-- Link para o arquivo CSS -->
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+    <div class="login-wrapper">
+        <div class="login-box">
+            <h2>Login de Administrador</h2>
+            <p>Por favor, insira suas credenciais para acessar o dashboard.</p>
+            <div class="form-group">
+                <label for="username">Nome de Usuário</label>
+                <input type="text" id="username" placeholder="Digite seu usuário">
+            </div>
+            <div class="form-group">
+                <label for="password">Senha</label>
+                <input type="password" id="password" placeholder="Digite sua senha">
+            </div>
+            <button class="btn-login" onclick="validateLogin()">Entrar</button>
+            <p id="error-message" style="color: red; display: none;">Usuário ou senha inválidos</p>
+        </div>
+    </div>
+
+    <script>
+        function validateLogin() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            // Lista de usuários com suas senhas
+            const users = {
+                "Max": "yas1607",
+                "Giulia": "Giulia2024",
+                "João": "Joao2024"
+            };
+
+            // Verifica se o usuário e a senha correspondem
+            if (users[username] && users[username] === password) {
+                window.location.href = "dashboard.html"; // Redireciona para o dashboard
+            } else {
+                document.getElementById("error-message").style.display = "block"; // Exibe mensagem de erro
+            }
+        }
+    </script>
+</body>
+</html>

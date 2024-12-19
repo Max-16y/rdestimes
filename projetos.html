@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Galeria - RDES TIMES</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Galeria de Projetos</h1>
+    </header>
+    <main>
+        <p>Texto completo sobre os projetos do grêmio.</p>
+    </main>
+
+      <!-- Rodapé será carregado aqui -->
+    <div id="footer-placeholder"></div>
+
+    <script src="js/scripts.js"></script>
+    <script>
+      // Carregar o conteúdo do rodapé
+      fetch('footer.html')
+        .then(response => response.text())
+        .then(data => {
+          document.getElementById('footer-placeholder').innerHTML = data;
+        });
+    </script>
+
+  <a href="#" id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+</body>
+</html>
+
+<!-- Container para exibir as publicações -->
+<div class="publications-container">
+  <!-- As publicações serão inseridas aqui pelo JavaScript -->
+</div>
+
+<script>
+// Carregar publicações da mesma forma que no painel
+document.addEventListener('DOMContentLoaded', function() {
+  const publications = JSON.parse(localStorage.getItem('publications')) || [];
+  const publicationsContainer = document.querySelector('.publications-container');
+  publicationsContainer.innerHTML = '';
+
+  publications.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+  publications.forEach(pub => {
+    const pubElement = document.createElement('div');
+    pubElement.classList.add('publication');
+    pubElement.innerHTML = `
+      <strong>${pub.title}</strong>
+      <p>${pub.content}</p>
+      <span><em>${pub.category}</em></span>
+    `;
+    publicationsContainer.appendChild(pubElement);
+  });
+});
+</script>

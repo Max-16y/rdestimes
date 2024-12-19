@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Painel de Administração</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+  <script defer src="js/dashboard.js"></script>
+</head>
+<body>
+  <div class="container">
+    <!-- Menu Lateral -->
+    <nav class="sidebar">
+      <h2>Admin <span>Dashboard</span></h2>
+      <ul>
+        <li><a href="#" class="active" onclick="showSection('dashboard')">Dashboard</a></li>
+        <li><a href="#" onclick="showSection('publications')">Publicações</a></li>
+        <li><a href="#" onclick="showSection('create')">Criar Matéria</a></li>
+        <li><a href="#" onclick="showSection('settings')">Configurações</a></li>
+      </ul>
+    </nav>
+
+    <!-- Botão de Menu (Mobile) -->
+    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
+
+    <!-- Conteúdo Principal -->
+    <main class="main-content">
+      <header class="header">
+        <h1>Bem-vindo ao Painel de Administração</h1>
+      </header>
+
+      <!-- Seção Dashboard -->
+      <section id="dashboard" class="section-content">
+  <h2>Dashboard</h2>
+  <p>Estatísticas gerais do site:</p>
+  <div class="stat-box" id="publication-count">Total de Publicações: 0</div>
+  <div class="stat-box" id="user-count">Usuários Ativos: 0</div>
+</section>
+
+      <!-- Seção Publicações -->
+      <section id="publications" class="section-content" style="display:none;">
+        <h3>Publicações Recentes</h3>
+        <div class="cards-container">
+          <div class="card">Matéria 1 <button>Edit</button><button>Delete</button></div>
+          <div class="card">Matéria 2 <button>Edit</button><button>Delete</button></div>
+        </div>
+      </section>
+
+<section id="create" class="section-content" style="display:none;">
+  <h3>Criar Nova Matéria</h3>
+  <div class="form-container">
+    <form id="publication-form">
+      <label for="titulo">Título</label>
+      <input type="text" id="titulo" placeholder="Título da matéria" required>
+
+      <label for="conteudo">Conteúdo</label>
+      <textarea id="conteudo" rows="10" placeholder="Digite o conteúdo da matéria" required></textarea>
+
+      <label for="categoria">Categoria</label>
+      <input type="text" id="categoria" placeholder="Categoria da matéria" required>
+
+      <button type="submit" class="btn-submit">Publicar</button>
+    </form>
+  </div>
+</section>
+
+<section id="settings" class="section-content" style="display:none;">
+  <h3>Configurações do Site</h3>
+  <div class="settings-container">
+    <fieldset>
+      <legend>Informações Básicas</legend>
+      <label for="site-name">Nome do Site</label>
+      <input type="text" id="site-name" placeholder="Nome do site">
+
+      <label for="site-description">Descrição do Site</label>
+      <textarea id="site-description" placeholder="Descrição do site"></textarea>
+    </fieldset>
+
+    <fieldset>
+      <legend>Preferências Avançadas</legend>
+      <label for="site-theme">Tema do Site</label>
+      <select id="site-theme">
+        <option value="light">Claro</option>
+        <option value="dark">Escuro</option>
+      </select>
+
+      <label for="site-language">Idioma</label>
+      <select id="site-language">
+        <option value="pt-BR">Português</option>
+        <option value="en">Inglês</option>
+        <option value="es">Espanhol</option>
+      </select>
+    </fieldset>
+
+    <button class="btn-submit" onclick="saveSettings()">Salvar Configurações</button>
+  </div>
+</section>
+    </main>
+  </div>
+</body>
+</html>
