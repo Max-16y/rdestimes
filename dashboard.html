@@ -3,55 +3,29 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel de Administração</title>
+  <title>Painel de Publicações</title>
   <link rel="stylesheet" href="css/dashboard.css">
-  <script defer src="js/server.js"></script>
+  <script defer src="server.js"></script>
 </head>
-<body>
-  <div class="container">
-    <nav class="sidebar">
-      <h2>Admin <span>Dashboard</span></h2>
-      <ul>
-        <li><a href="#" class="active" onclick="showSection('dashboard')">Dashboard</a></li>
-        <li><a href="#" onclick="showSection('publications')">Publicações</a></li>
-        <li><a href="#" onclick="showSection('create')">Criar Matéria</a></li>
-        <li><a href="#" onclick="showSection('settings')">Configurações</a></li>
-      </ul>
-    </nav>
-
-    <button class="toggle-btn" onclick="toggleSidebar()">☰</button>
-
-    <main class="main-content">
-      <section id="dashboard" class="section-content">
-        <h2>Dashboard</h2>
-        <div id="publication-count">Total de Publicações: 0</div>
-      </section>
-
-      <section id="publications" class="section-content" style="display:none;">
-        <h3>Publicações Recentes</h3>
-        <div class="cards-container"></div>
-      </section>
-
-      <section id="create" class="section-content" style="display:none;">
-        <h3>Criar Nova Matéria</h3>
-        <form id="publication-form" onsubmit="savePublication(title.value, content.value, category.value)">
-          <label for="titulo">Título</label>
-          <input type="text" id="titulo" required>
-          <label for="conteudo">Conteúdo</label>
-          <textarea id="conteudo" required></textarea>
-          <label for="categoria">Categoria</label>
-          <input type="text" id="categoria" required>
-          <button type="submit">Publicar</button>
-        </form>
-      </section>
-
-      <section id="settings" class="section-content" style="display:none;">
-        <h3>Configurações</h3>
-        <input type="text" id="site-name" placeholder="Nome do Site">
-        <textarea id="site-description" placeholder="Descrição"></textarea>
-        <button onclick="saveSettings()">Salvar</button>
-      </section>
-    </main>
-  </div>
+<body id="dashboard">
+  <header>
+    <h1>Painel de Controle</h1>
+  </header>
+  <main>
+    <section id="form-section">
+      <h2>Nova Publicação</h2>
+      <form id="publication-form" onsubmit="savePublication(event)">
+        <input type="text" id="titulo" placeholder="Título da Publicação" required>
+        <textarea id="conteudo" placeholder="Conteúdo" required></textarea>
+        <input type="text" id="categoria" placeholder="Categoria" required>
+        <input type="url" id="media-url" placeholder="URL de Imagem ou Vídeo">
+        <button type="submit">Salvar</button>
+      </form>
+    </section>
+    <section id="publications">
+      <h2>Publicações</h2>
+      <div class="cards-container"></div>
+    </section>
+  </main>
 </body>
 </html>
