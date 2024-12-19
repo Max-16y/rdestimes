@@ -1,3 +1,13 @@
+function openSidebar() {
+  document.getElementById("sidebar").style.width = "250px"; // Abre o menu lateral
+  document.getElementById("content").style.marginLeft = "250px"; // Ajusta o conteúdo
+}
+
+function closeSidebar() {
+  document.getElementById("sidebar").style.width = "0"; // Fecha o menu lateral
+  document.getElementById("content").style.marginLeft = "0"; // Restaura o conteúdo
+}
+
 // Função para alternar entre as seções
 function showSection(sectionId) {
   // Oculta todas as seções
