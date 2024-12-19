@@ -1,31 +1,39 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Painel de Publicações</title>
+  <title>Dashboard - Página Inicial</title>
   <link rel="stylesheet" href="css/dashboard.css">
-  <script defer src="server.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/js/all.min.js"></script>
 </head>
-<body id="dashboard">
+<body>
+
+  <!-- Menu Lateral -->
+  <div id="sidebar">
+    <button class="close-btn" onclick="closeSidebar()">×</button>
+    <ul>
+      <li><a href="dashboard.html">Início</a></li>
+      <li><a href="publicacoes.html">Publicações</a></li>
+      <li><a href="projetos.html">Projetos</a></li>
+      <li><a href="relatorios.html">Relatórios</a></li>
+    </ul>
+  </div>
+
+  <!-- Barra de Navegação -->
   <header>
-    <h1>Painel de Controle</h1>
+    <button class="open-btn" onclick="openSidebar()">☰</button>
+    <h1>Bem-vindo ao Dashboard</h1>
   </header>
-  <main>
-    <section id="form-section">
-      <h2>Nova Publicação</h2>
-      <form id="publication-form" onsubmit="savePublication(event)">
-        <input type="text" id="titulo" placeholder="Título da Publicação" required>
-        <textarea id="conteudo" placeholder="Conteúdo" required></textarea>
-        <input type="text" id="categoria" placeholder="Categoria" required>
-        <input type="url" id="media-url" placeholder="URL de Imagem ou Vídeo">
-        <button type="submit">Salvar</button>
-      </form>
+
+  <!-- Conteúdo da Página de Início -->
+  <div id="content">
+    <section class="intro">
+      <h2>Introdução ao Dashboard</h2>
+      <p>Este é o seu painel de controle, onde você pode visualizar e gerenciar todas as informações e ações. Use o menu lateral para navegar entre as diferentes seções do dashboard.</p>
     </section>
-    <section id="publications">
-      <h2>Publicações</h2>
-      <div class="cards-container"></div>
-    </section>
-  </main>
+  </div>
+
+  <script src="js/dashboard.js"></script>
 </body>
 </html>
