@@ -1,0 +1,10 @@
+{
+  "name": "rdes-times",
+  "version": "1.0.0",
+  "description": "Jornal do Grêmio",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {}
+}
