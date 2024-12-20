@@ -48,22 +48,51 @@
       margin-bottom: 5px;
     }
 
-    input, textarea, button {
-      width: 100%; /* Largura total do elemento */
-      font-size: 16px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-    }
+    /* Ajustando o contêiner do formulário */
+.form-container {
+  max-width: 900px; /* Largura máxima para telas grandes */
+  margin: 0 auto;   /* Centraliza o contêiner */
+  padding: 20px;
+  background-color: #f9f9f9; /* Fundo leve para destacar o formulário */
+  border-radius: 8px; /* Cantos arredondados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para destaque */
+}
 
-    /* Aumentando a altura */
-    input[type="text"] {
-      height: 50px; /* Altura do campo de título */
-    }
+/* Estilo para o formulário */
+#publication-form label {
+  font-weight: bold;
+  margin-top: 10px;
+  display: block; /* Força os rótulos a ficarem acima dos campos */
+}
 
-    textarea {
-      height: 200px; /* Altura maior para texto */
-    }
+#publication-form input, 
+#publication-form textarea, 
+#publication-form button {
+  width: 100%; /* Ocupa toda a largura disponível */
+  padding: 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 16px;
+}
+
+#publication-form textarea {
+  resize: vertical; /* Permite redimensionamento vertical */
+}
+
+#publication-form button {
+  background-color: darkgoldenrod; /* Cor do botão */
+  color: #fff;
+  font-weight: bold;
+  cursor: pointer;
+  border: none;
+}
+
+#publication-form button:hover {
+  background-color: #0056b3; /* Azul mais escuro ao passar o mouse */
+}
+
 
     button {
       padding: 15px;
