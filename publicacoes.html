@@ -5,7 +5,26 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Publicações</title>
   <link rel="stylesheet" href="css/dashboard.css">
-<style>
+
+  <style>
+    /* Estilos para o Menu Lateral e Barra de Navegação */
+    #sidebar {
+      /* Adicione seus estilos de menu lateral aqui */
+    }
+
+    .close-btn {
+      /* Estilos para o botão de fechar do menu lateral */
+    }
+
+    .open-btn {
+      /* Estilos para o botão de abrir o menu lateral */
+    }
+
+    /* Outros estilos para a barra de navegação */
+  </style>
+</head>
+
+<body>
   <!-- Menu Lateral -->
   <div id="sidebar">
     <button class="close-btn" onclick="closeSidebar()">×</button>
@@ -22,12 +41,8 @@
     <button class="open-btn" onclick="openSidebar()">☰</button>
     <h1>Bem-vindo ao Dashboard</h1>
   </header>
-  <script src="js/dashboard.js"></script>
-</body>
-</html>
-</head>
-<body>
-</style>
+
+  <!-- Página de Publicações -->
   <header>
     <h1>Publicações</h1>
   </header>
@@ -52,6 +67,8 @@
       </form>
     </section>
   </div>
+
+  <script src="js/dashboard.js"></script>
 
   <script>
     function postPublication() {
