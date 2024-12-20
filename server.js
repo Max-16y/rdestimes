@@ -201,3 +201,31 @@ document.addEventListener('DOMContentLoaded', function () {
   updatePublicationCount();
   showSection('dashboard');
 });
+
+// js/projetos.js
+document.addEventListener("DOMContentLoaded", function () {
+  // Obter publicações do Local Storage
+  const publications = JSON.parse(localStorage.getItem("publications")) || [];
+
+  // Selecionar o container de publicações
+  const container = document.getElementById("publicationsContainer");
+
+  // Adicionar cada publicação ao container
+  publications.forEach((publication) => {
+    const publicationElement = document.createElement("div");
+    publicationElement.className = "publication";
+
+    publicationElement.innerHTML = `
+      <h3>${publication.title}</h3>
+      <p>${publication.text}</p>
+      ${
+        publication.attachment
+          ? `<p><strong>Anexo:</strong> <a href="${publication.attachment}" target="_blank">${publication.attachment}</a></p>`
+          : ""
+      }
+      <p><small>Publicado em: ${new Date(publication.date).toLocaleString()}</small></p>
+    `;
+
+    container.appendChild(publicationElement);
+  });
+});
