@@ -205,21 +205,30 @@
       }
     }
 
-    function savePublication(title, content, attachment) {
-      if (!title || !content) {
-        alert("Por favor, preencha o título e o texto.");
-        return;
-      }
+    function savePublication() {
+  const title = document.getElementById('title').value;
+  const content = document.getElementById('content').value;
+  const attachment = document.getElementById('attachment').value; // Para anexar links
 
-      const publications = JSON.parse(localStorage.getItem('publications')) || [];
-      const newPublication = {
-        id: new Date().getTime(),
-        title,
-        content,
-        attachment,
-        date: new Date().toISOString()
-      };
+  if (title.trim() === '' || content.trim() === '') {
+    alert('Por favor, preencha o título e o conteúdo.');
+    return;
+  }
 
+  const publications = JSON.parse(localStorage.getItem('publications')) || [];
+  const newPublication = {
+    id: new Date().getTime(),
+    title,
+    content,
+    attachment,
+    date: new Date().toISOString(),
+  };
+
+  publications.push(newPublication);
+  localStorage.setItem('publications', JSON.stringify(publications));
+  alert('Publicação salva com sucesso!');
+  document.getElementById('publication-form').reset();
+}
       publications.unshift(newPublication); // Adiciona no início da lista
       localStorage.setItem('publications', JSON.stringify(publications));
 
