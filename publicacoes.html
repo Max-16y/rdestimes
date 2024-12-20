@@ -5,6 +5,47 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Publicações</title>
   <link rel="stylesheet" href="css/dashboard.css">
+  <style>
+    /* Estilo para o formulário maior */
+    form {
+      width: 100%;
+      max-width: 600px;
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    form div {
+      margin-bottom: 15px;
+    }
+
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 5px;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #333;
+      color: #fff;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #575757;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -17,16 +58,16 @@
       <h2>Criar uma Nova Publicação</h2>
       <form id="publication-form">
         <div>
-          <label for="title">Título da Matéria:</label><br>
-          <input type="text" id="title" name="title" required>
+          <label for="title">Título da Matéria:</label>
+          <input type="text" id="title" name="title" placeholder="Digite o título" required>
         </div>
         <div>
-          <label for="content">Texto:</label><br>
-          <textarea id="content" name="content" rows="4" required></textarea>
+          <label for="content">Texto:</label>
+          <textarea id="content" name="content" rows="6" placeholder="Digite o texto" required></textarea>
         </div>
         <div>
-          <label for="attachment">Anexar Arquivo ou URL:</label><br>
-          <input type="text" id="attachment" name="attachment" placeholder="URL ou caminho do arquivo">
+          <label for="attachment">Anexar Arquivo (opcional):</label>
+          <input type="file" id="attachment" name="attachment" accept="image/*,video/*,.pdf">
         </div>
         <button type="button" onclick="postPublication()">Postar</button>
       </form>
@@ -38,8 +79,27 @@
     function postPublication() {
       const title = document.getElementById('title').value;
       const content = document.getElementById('content').value;
-      const attachment = document.getElementById('attachment').value;
+      const attachmentInput = document.getElementById('attachment');
+      let attachment = '';
 
+      if (attachmentInput.files.length > 0) {
+        // Lê o arquivo como URL Base64
+        const file = attachmentInput.files[0];
+        const reader = new FileReader();
+
+        reader.onload = function(event) {
+          attachment = event.target.result;
+          savePublication(title, content, attachment);
+        };
+
+        reader.readAsDataURL(file);
+      } else {
+        savePublication(title, content, attachment);
+      }
+    }
+
+    // Função para salvar a publicação no localStorage
+    function savePublication(title, content, attachment) {
       if (!title || !content) {
         alert("Por favor, preencha o título e o texto.");
         return;
