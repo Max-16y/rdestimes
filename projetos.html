@@ -1,50 +1,25 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projetos</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
 <body>
-  <header>
-    <h1>Projetos</h1>
-  </header>
+  <!-- Formulário de publicação -->
+  <form id="publication-form" onsubmit="savePublication(event)">
+    <input type="text" id="titulo" placeholder="Título" required />
+    <textarea id="conteudo" placeholder="Conteúdo" required></textarea>
+    <input type="text" id="categoria" placeholder="Categoria" required />
+    <input type="text" id="media-url" placeholder="URL da Mídia (opcional)" />
+    <button type="submit">Publicar</button>
+  </form>
 
-  <div id="content">
-    <section id="publications-section">
-      <h2>Publicações Recentes</h2>
-      <!-- As publicações serão carregadas aqui -->
-    </section>
-  </div>
+  <!-- Container para exibir publicações -->
+  <div id="publicationsContainer"></div>
 
-  <script>
-    function loadPublications() {
-      const publications = JSON.parse(localStorage.getItem('publications')) || [];
-      const section = document.getElementById('publications-section');
-
-      section.innerHTML = ''; // Limpa o conteúdo da seção
-
-      if (publications.length === 0) {
-        section.innerHTML = '<p>Não há publicações no momento.</p>';
-        return;
-      }
-
-      // Ordena as publicações pela data (mais recentes primeiro)
-      publications.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-      publications.forEach(pub => {
-        const publicationDiv = document.createElement('div');
-        publicationDiv.classList.add('publication');
-
-        publicationDiv.innerHTML = `
-          <h3>${pub.title}</h3>
-          <p>${pub.content}</p>
-          ${
-            pub.attachment
-              ? `<a href="${pub.attachment}" target="_blank">Ver Anexo</a>`
-              : ''
-          }
-          <div class="date">Publicado em: ${new Date(pub.date).toLocaleString()}</div>
-        `;
-
-        section.appendChild(publicationDiv);
-      });
-    }
-
-    // Carrega as publicações ao abrir a página
-    window.onload = loadPublications;
-  </script>
+  <!-- Incluindo o script JavaScript -->
+  <script src="js/publicacoes.js"></script>
 </body>
+</html>
