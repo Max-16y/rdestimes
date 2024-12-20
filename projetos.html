@@ -1,10 +1,3 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Galeria - RDES TIMES</title>
-    <link rel="stylesheet" href="css/styles.css">
-</head>
 <body>
   <header>
     <h1>Projetos</h1>
@@ -22,10 +15,15 @@
       const publications = JSON.parse(localStorage.getItem('publications')) || [];
       const section = document.getElementById('publications-section');
 
+      section.innerHTML = ''; // Limpa o conteúdo da seção
+
       if (publications.length === 0) {
         section.innerHTML = '<p>Não há publicações no momento.</p>';
         return;
       }
+
+      // Ordena as publicações pela data (mais recentes primeiro)
+      publications.sort((a, b) => new Date(b.date) - new Date(a.date));
 
       publications.forEach(pub => {
         const publicationDiv = document.createElement('div');
@@ -34,7 +32,11 @@
         publicationDiv.innerHTML = `
           <h3>${pub.title}</h3>
           <p>${pub.content}</p>
-          ${pub.attachment ? `<img src="${pub.attachment}" alt="Anexo">` : ''}
+          ${
+            pub.attachment
+              ? `<a href="${pub.attachment}" target="_blank">Ver Anexo</a>`
+              : ''
+          }
           <div class="date">Publicado em: ${new Date(pub.date).toLocaleString()}</div>
         `;
 
