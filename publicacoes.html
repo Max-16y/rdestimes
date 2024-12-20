@@ -5,22 +5,91 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Publicações</title>
   <link rel="stylesheet" href="css/dashboard.css">
-
   <style>
-    /* Estilos para o Menu Lateral e Barra de Navegação */
+    /* Menu Lateral */
     #sidebar {
-      /* Adicione seus estilos de menu lateral aqui */
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: -250px;
+      height: 100%;
+      background-color: #333;
+      transition: 0.3s;
+      padding-top: 60px;
     }
 
-    .close-btn {
-      /* Estilos para o botão de fechar do menu lateral */
+    #sidebar ul {
+      list-style-type: none;
+      padding: 0;
+    }
+
+    #sidebar ul li {
+      padding: 8px 16px;
+      text-align: left;
+    }
+
+    #sidebar ul li a {
+      color: white;
+      text-decoration: none;
+      font-size: 18px;
+    }
+
+    #sidebar ul li a:hover {
+      background-color: #575757;
+    }
+
+    .open-btn, .close-btn {
+      font-size: 30px;
+      color: white;
+      background-color: #333;
+      border: none;
+      padding: 10px;
+      cursor: pointer;
     }
 
     .open-btn {
-      /* Estilos para o botão de abrir o menu lateral */
+      position: absolute;
+      top: 15px;
+      left: 15px;
     }
 
-    /* Outros estilos para a barra de navegação */
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+    }
+
+    header h1 {
+      text-align: center;
+    }
+
+    #content {
+      margin-left: 270px;
+      padding: 20px;
+    }
+
+    section {
+      background-color: #f4f4f4;
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      margin-bottom: 15px;
+      padding: 10px;
+    }
+
+    button {
+      background-color: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    
+    button:hover {
+      background-color: #555;
+    }
   </style>
 </head>
 
@@ -30,7 +99,7 @@
     <button class="close-btn" onclick="closeSidebar()">×</button>
     <ul>
       <li><a href="dashboard.html">Início</a></li>
-      <li><a href="publicacoes.html">Publicações</a></li> <!-- Link para publicações -->
+      <li><a href="publicacoes.html">Publicações</a></li>
       <li><a href="projetos.html">Projetos</a></li>
       <li><a href="relatorios.html">Relatórios</a></li>
     </ul>
@@ -43,11 +112,11 @@
   </header>
 
   <!-- Página de Publicações -->
-  <header>
-    <h1>Publicações</h1>
-  </header>
-
   <div id="content">
+    <header>
+      <h1>Publicações</h1>
+    </header>
+
     <section>
       <h2>Criar uma Nova Publicação</h2>
       <form id="publication-form">
@@ -68,9 +137,17 @@
     </section>
   </div>
 
-  <script src="js/dashboard.js"></script>
-
   <script>
+    // Funções de abertura e fechamento do menu lateral
+    function openSidebar() {
+      document.getElementById('sidebar').style.left = '0';
+    }
+
+    function closeSidebar() {
+      document.getElementById('sidebar').style.left = '-250px';
+    }
+
+    // Função para postar a publicação
     function postPublication() {
       const title = document.getElementById('title').value;
       const content = document.getElementById('content').value;
@@ -92,6 +169,7 @@
       }
     }
 
+    // Função para salvar a publicação no localStorage
     function savePublication(title, content, attachment) {
       if (title.trim() === '' || content.trim() === '') {
         alert('Por favor, preencha o título e o conteúdo.');
