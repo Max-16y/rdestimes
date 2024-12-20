@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Publicações</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+  <header>
+    <button class="open-btn" onclick="openSidebar()">☰</button>
+    <h1>Publicações</h1>
+  </header>
+
+  <div id="content">
+    <section class="intro">
+      <h2>Criar uma Nova Publicação</h2>
+      <form id="publication-form">
+        <div>
+          <label for="title">Título da Matéria:</label><br>
+          <input type="text" id="title" name="title" required>
+        </div>
+        <div>
+          <label for="content">Texto:</label><br>
+          <textarea id="content" name="content" rows="4" required></textarea>
+        </div>
+        <div>
+          <label for="attachment">Anexar Arquivo ou URL:</label><br>
+          <input type="text" id="attachment" name="attachment" placeholder="URL ou caminho do arquivo">
+        </div>
+        <button type="button" onclick="postPublication()">Postar</button>
+      </form>
+    </section>
+  </div>
+
+  <script>
+    // Função para salvar publicações no localStorage
+    function postPublication() {
+      const title = document.getElementById('title').value;
+      const content = document.getElementById('content').value;
+      const attachment = document.getElementById('attachment').value;
+
+      if (!title || !content) {
+        alert("Por favor, preencha o título e o texto.");
+        return;
+      }
+
+      const publications = JSON.parse(localStorage.getItem('publications')) || [];
+      const newPublication = {
+        id: new Date().getTime(),
+        title: title,
+        content: content,
+        attachment: attachment,
+        date: new Date().toISOString()
+      };
+
+      publications.push(newPublication);
+      localStorage.setItem('publications', JSON.stringify(publications));
+
+      alert("Publicação criada com sucesso!");
+      document.getElementById('publication-form').reset();
+    }
+  </script>
+</body>
+</html>
