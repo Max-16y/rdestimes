@@ -6,63 +6,43 @@
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <header>
-        <h1>Projetos do Grêmio</h1>
-    </header>
-    <main>
+  <header>
+    <h1>Projetos</h1>
+  </header>
+
   <div id="content">
-    <section id="projectsSection">
+    <section id="publications-section">
       <h2>Publicações Recentes</h2>
-      <div id="publicationsContainer">
-        <!-- Publicações aparecerão aqui -->
-      </div>
+      <!-- As publicações serão carregadas aqui -->
     </section>
   </div>
 
-  <script src="js/projetos.js"></script>
+  <script>
+    function loadPublications() {
+      const publications = JSON.parse(localStorage.getItem('publications')) || [];
+      const section = document.getElementById('publications-section');
+
+      if (publications.length === 0) {
+        section.innerHTML = '<p>Não há publicações no momento.</p>';
+        return;
+      }
+
+      publications.forEach(pub => {
+        const publicationDiv = document.createElement('div');
+        publicationDiv.classList.add('publication');
+
+        publicationDiv.innerHTML = `
+          <h3>${pub.title}</h3>
+          <p>${pub.content}</p>
+          ${pub.attachment ? `<img src="${pub.attachment}" alt="Anexo">` : ''}
+          <div class="date">Publicado em: ${new Date(pub.date).toLocaleString()}</div>
+        `;
+
+        section.appendChild(publicationDiv);
+      });
+    }
+
+    // Carrega as publicações ao abrir a página
+    window.onload = loadPublications;
+  </script>
 </body>
-</html>
-
-      <!-- Rodapé será carregado aqui -->
-    <div id="footer-placeholder"></div>
-
-    <script src="js/scripts.js"></script>
-    <script>
-      // Carregar o conteúdo do rodapé
-      fetch('footer.html')
-        .then(response => response.text())
-        .then(data => {
-          document.getElementById('footer-placeholder').innerHTML = data;
-        });
-    </script>
-
-  <a href="#" id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
-</body>
-</html>
-
-<!-- Container para exibir as publicações -->
-<div class="publications-container">
-  <!-- As publicações serão inseridas aqui pelo JavaScript -->
-</div>
-
-<script>
-// Carregar publicações da mesma forma que no painel
-document.addEventListener('DOMContentLoaded', function() {
-  const publications = JSON.parse(localStorage.getItem('publications')) || [];
-  const publicationsContainer = document.querySelector('.publications-container');
-  publicationsContainer.innerHTML = '';
-
-  publications.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-  publications.forEach(pub => {
-    const pubElement = document.createElement('div');
-    pubElement.classList.add('publication');
-    pubElement.innerHTML = `
-      <strong>${pub.title}</strong>
-      <p>${pub.content}</p>
-      <span><em>${pub.category}</em></span>
-    `;
-    publicationsContainer.appendChild(pubElement);
-  });
-});
-</script>
