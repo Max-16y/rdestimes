@@ -14,5 +14,18 @@
   <main>
     <div class="projects-container"></div>
   </main>
+
+ <!-- Rodapé será carregado aqui -->
+      <div id="footer-placeholder"></div>
+
+      <script src="js/scripts.js"></script>
+      <script>
+        // Carregar o conteúdo do rodapé
+        fetch('footer.html')
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+          });
+      </script>
 </body>
 </html>
