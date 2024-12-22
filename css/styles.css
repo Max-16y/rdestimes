@@ -457,6 +457,36 @@ footer {
     width: 100%;
 }
 
+main {
+  padding: 20px;
+}
+
+.cards-container, .projects-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.card, .project-card {
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 15px;
+  width: calc(33.333% - 20px);
+  box-sizing: border-box;
+}
+
+.card img, .card video, .project-card img, .project-card video {
+  max-width: 100%;
+  border-radius: 5px;
+}
+
+.media-preview {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+}
+
+
 /* Estilo do conteúdo do rodapé */
 .footer-content {
     display: flex;
