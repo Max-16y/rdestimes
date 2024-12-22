@@ -1,25 +1,18 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Projetos</title>
-  <link rel="stylesheet" href="css/dashboard.css">
+  <link rel="stylesheet" href="style.css">
+  <script defer src="server.js"></script>
 </head>
-<body>
-  <!-- Formulário de publicação -->
-  <form id="publication-form" onsubmit="savePublication(event)">
-    <input type="text" id="titulo" placeholder="Título" required />
-    <textarea id="conteudo" placeholder="Conteúdo" required></textarea>
-    <input type="text" id="categoria" placeholder="Categoria" required />
-    <input type="text" id="media-url" placeholder="URL da Mídia (opcional)" />
-    <button type="submit">Publicar</button>
-  </form>
-
-  <!-- Container para exibir publicações -->
-  <div id="publicationsContainer"></div>
-
-  <!-- Incluindo o script JavaScript -->
-  <script src="js/publicacoes.js"></script>
+<body id="projects">
+  <header>
+    <h1>Projetos</h1>
+  </header>
+  <main>
+    <div class="projects-container"></div>
+  </main>
 </body>
 </html>
