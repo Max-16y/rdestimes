@@ -1,0 +1,19 @@
+{
+  "name": "rdestimes",
+  "version": "1.0.0",
+  "description": "Jornal escolar HTML e CSS.",
+  "main": "index.js",
+  "scripts": {
+    "test": "server.js"
+  },
+  "author": "Max e Grêmio RDES.",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "express": "^4.21.2",
+    "express-session": "^1.18.1",
+    "fs": "^0.0.1-security",
+    "multer": "^1.4.5-lts.1",
+    "path": "^0.12.7"
+  }
+}
