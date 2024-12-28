@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Projetos</title>
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="publicacoes-container">
+    <!-- As publicações serão carregadas aqui -->
+    <div id="publicacoes"></div>
+  </div>
+
+  <script>
+    // Carregar as publicações do backend
+    fetch('/api/publicacoes') // Certifique-se de que a rota esteja correta
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao carregar as publicações');
+        }
+        return response.json();
+      })
+      .then(publicacoes => {
+        const publicacoesContainer = document.getElementById('publicacoes');
+        
+        // Verificar se há publicações
+        if (publicacoes.length === 0) {
+          publicacoesContainer.innerHTML = '<p>Não há publicações no momento.</p>';
+          return;
+        }
+        
+        // Exibir as publicações na página
+        publicacoes.forEach(publicacao => {
+          const div = document.createElement('div');
+          div.classList.add('publicacao');
+          
+          div.innerHTML = `
+            <h2>${publicacao.titulo}</h2>
+            <p>${publicacao.corpo}</p>
+            ${publicacao.imagemUrl ? `<img src="${publicacao.imagemUrl}" alt="Imagem da publicação" style="width: 100%; max-height: 300px; object-fit: cover;">` : ''}
+            <p><small>Publicado em: ${new Date(publicacao.data).toLocaleString('pt-BR')}</small></p>
+          `;
+          
+          publicacoesContainer.appendChild(div);
+        });
+      })
+      .catch(error => {
+        console.error('Erro ao carregar publicações:', error);
+        document.getElementById('publicacoes').innerHTML = '<p>Erro ao carregar publicações. Tente novamente mais tarde.</p>';
+      });
+  </script>
+
+  <!-- Rodapé será carregado aqui -->
+  <div id="footer-placeholder"></div>
+
+  <script src="js/scripts.js"></script>
+  <script>
+    // Carregar o conteúdo do rodapé
+    fetch('footer.html')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Erro ao carregar o rodapé');
+        }
+        return response.text();
+      })
+      .then(data => {
+        document.getElementById('footer-placeholder').innerHTML = data;
+      })
+      .catch(error => {
+        console.error('Erro ao carregar o rodapé:', error);
+      });
+  </script>
+
+  <!-- Botão de voltar ao topo -->
+  <a href="#" id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+</body>
+</html>

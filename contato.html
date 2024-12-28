@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Contato - RDES TIMES</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Fale Conosco</h1>
+    </header>
+  <section id="contato">
+    <div class="texto">
+        <!-- Link para o Instagram logo no topo da página -->
+        <div class="social-contact">
+            <a href="https://instagram.com/gremio.rdes" target="_blank">
+                <i class="fab fa-instagram"></i> Instagram
+            </a>
+        </div>
+
+        <!-- Formulário de contato logo abaixo do link -->
+        <h2>Fale Conosco</h2>
+        <form action="https://formspree.io/f/xyzwzyzr" method="POST">
+            <label for="name">Nome:</label>
+            <input type="text" id="name" name="name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required>
+
+            <label for="message">Mensagem:</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+
+            <button type="submit">Enviar</button>
+        </form>
+    </div>
+  </section>
+  
+        <!-- Rodapé será carregado aqui -->
+      <div id="footer-placeholder"></div>
+
+      <script src="js/scripts.js"></script>
+      <script>
+        // Carregar o conteúdo do rodapé
+        fetch('footer.html')
+          .then(response => response.text())
+          .then(data => {
+            document.getElementById('footer-placeholder').innerHTML = data;
+          });
+      </script>
+     <a href="#" id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+</body>
+</html>

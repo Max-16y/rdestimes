@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Início</title>
+  <link rel="stylesheet" href="css/dashboard.css">
+</head>
+<body>
+
+  <div class="container">
+    <!-- Slidebar (barra lateral) -->
+    <div class="slidebar">
+      <h2>Painel de Controle</h2>
+      <a href="#tab1" class="tab-link">Criar Publicação</a>
+      <a href="#tab2" class="tab-link">Publicações</a>
+      <a href="#tab3" class="tab-link">Configurações</a>
+    </div>
+
+    <!-- Conteúdo Principal -->
+    <div class="main-content">
+      <h1>Início</h1>
+
+      <!-- Abas de conteúdo -->
+      <div class="tabs">
+        <button class="tab" id="tab1-button">Criar Publicação</button>
+        <button class="tab" id="tab2-button">Publicações</button>
+        <button class="tab" id="tab3-button">Configurações</button>
+      </div>
+
+      <div id="tab1" class="tab-content">
+        <h2>Criar uma nova publicação</h2>
+        <form action="/criar-publicacao" method="POST" enctype="multipart/form-data">
+          <div class="form-group">
+            <label for="titulo">Título:</label>
+            <input type="text" id="titulo" name="titulo" placeholder="Digite o título da publicação" required>
+          </div>
+          <div class="form-group">
+            <label for="corpo">Corpo da Publicação:</label>
+            <textarea id="corpo" name="corpo" placeholder="Escreva a publicação aqui..." rows="6" required></textarea>
+          </div>
+          <div class="form-group">
+            <label for="imagem">Imagem (opcional):</label>
+            <input type="file" id="imagem" name="imagem" accept="image/*">
+          </div>
+          <div class="form-group">
+            <label for="url">URL (opcional):</label>
+            <input type="url" id="url" name="url" placeholder="Insira a URL">
+          </div>
+          <button type="submit">Enviar Publicação</button>
+        </form>
+      </div>      
+      <div id="tab2" class="tab-content">
+        <h2>Publicações Existentes</h2>
+        <p>Aqui você verá as publicações criadas.</p>
+      </div>
+      <div id="tab3" class="tab-content">
+        <h2>Configurações do Sistema</h2>
+        <p>Aqui você pode ajustar as configurações do seu sistema.</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Código para alternar as abas de conteúdo
+    const tabs = document.querySelectorAll('.tab');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        // Esconder todas as abas
+        tabContents.forEach(content => content.classList.remove('active'));
+        
+        // Mostrar a aba correspondente
+        const targetTab = document.querySelector(`#${tab.id.replace('-button', '')}`);
+        targetTab.classList.add('active');
+      });
+    });
+  </script>
+
+</body>
+</html>

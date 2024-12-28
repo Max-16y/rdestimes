@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Jornal escolar sobre o novo ensino médio e eventos escolares">
+    <title>RDES TIMES</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vogue&family=Times+New+Roman&family=Arial&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<!-- Botão de login -->
+<button class="btn-login" onclick="window.location.href='login.html'">Login</button>
+  
+<!-- Barra de leitura -->
+<div class="reading-bar"></div>
+  
+<header>
+    <div class="top-bar">
+        <a href="#" class="logo">
+            <img src="images/logo-rdes.png" alt="Logo RDES">
+        </a>
+        <h1>RDES TIMES</h1>
+        <div class="social-icons">
+            <a href="https://instagram.com/gremio.rdes" target="_blank" class="instagram"><i class="fab fa-instagram"></i></a>
+            <a href="mailto:rdesgremio@gmail.com" class="email"><i class="fas fa-envelope"></i></a>
+        </div>
+    </div>
+    <nav>
+        <form class="search-bar">
+            <input type="text" id="search-input" placeholder="Digite para pesquisar...">
+            <button type="submit" id="search-btn"><i class="fas fa-search"></i></button>
+        </form>
+        <ul class="suggestions" id="suggestions-list"></ul>
+        <ul>
+            <li><a href="#home" accesskey="h">Home</a></li>
+            <li><a href="#sobre" accesskey="s">Sobre</a></li>
+            <li><a href="#projetos" accesskey="p">Projetos</a></li>
+            <li><a href="#contato" accesskey="">Contato</a></li>
+        </ul>
+    </nav>
+</header>
+
+<button id="toggle-dark-mode" style="position: fixed; top: 20px; right: 20px; z-index: 1000; border: none; background: #000; color: #fff; padding: 10px 15px; cursor: pointer; border-radius: 50px;">
+ 🌙
+</button>
+<div id="progress-bar"></div>
+
+<main>
+    <section id="home">
+        <div class="texto">
+            <p>Fique por dentro dos eventos, novidades do novo ensino médio e ações da diretoria de ensino...</p>
+            <div class="button-container">
+                <a href="home.html"><button id="btnHome">Mais informações</button></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="sobre">
+        <div class="texto">
+            <h2>Sobre</h2>
+            <p>O jornal escolar RDES tem o objetivo de informar alunos, professores e funcionários sobre tudo o que acontece na nossa escola...</p>
+            <div class="button-container">
+                <a href="sobre.html"><button id="btnSobre">Saiba mais sobre o jornal</button></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="projetos">
+        <div class="texto">
+            <h2>Projetos do Grêmio</h2>
+            <img src="images/novembro-consciente.png" alt="Consciência negra" class="consciencia-principal">
+            <p>Mês da Consciência promovido pelos gremistas do Pompílio Mercadante...</p>
+            <div class="button-container">
+                <a href="projetos.html"><button id="btnProjetos">Veja nossos projetos</button></a>
+            </div>
+        </div>
+    </section>
+
+    <section id="contato">
+        <div class="texto">
+            <h2>Contato</h2>
+            <div class="button-container">
+                <a href="contato.html"><button id="btnContato">Fale</button></a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<header>
+    <h1>Minha Galeria</h1>
+</header>
+<main>
+    <section class="gallery">
+        <div class="carousel">
+            <div class="carousel-inner">
+                <img src="images/autoestima.png" alt="Imagem 1">
+                <img src="images/cancer.png" alt="Imagem 2">
+                <img src="images/gentileza.png" alt="Imagem 3">
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <button id="prev" class="custom-btn">Anterior</button>
+        <button id="next" class="custom-btn">Próximo</button>
+    </section>
+</main>
+
+<!-- Removido o fetch de footer -->
+<div id="footer-placeholder"></div>
+
+<script src="js/scripts.js"></script>
+
+<a href="#" id="backToTop" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+
+<section id="depoimentos">
+    <h2>Comentar</h2>
+    <div id="comentarios">
+        <!-- Comentários existentes aparecerão aqui -->
+    </div>
+    <form id="form-comentario">
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+        
+        <label for="comentario">Comentário:</label>
+        <textarea id="comentario" name="comentario" placeholder="Deixe seu comentário" rows="4" required></textarea>
+        
+        <button type="submit">Enviar Comentário</button>
+    </form>
+</section>
+
+</body>
+</html>
